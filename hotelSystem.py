@@ -3,7 +3,7 @@ import random
 class hotelfarecal:
     def __init__(self,rt='',s=0,p=0,r=0,t=0,a=1800,
                  name='',address='',cindate='',coutdate='',rno=0):
-        print(" ******** WELCOME TO HOTEL COLORADO")
+        print(" ******** WELCOME TO HOTEL COLORADO ********")
 
         self.rt=rt
 
@@ -91,6 +91,53 @@ class hotelfarecal:
                 print("Invalid Option")
             print ("Total Food Cost = $",self.r," ")
 
+    # Creating the Laundry Bill
+    def laundryBill(self):
+        print("*****Laundry Menu*****")
+        print("1. Shorts--->$5","2. Pants--->$7","3. Shirt--->$6","4. Jeans--->$8","5. Suit--->$25","6. Exit")
+
+        while (1):
+            e = int(input("Enter your choice: "))
+            if (e == 1):
+                f = int(input("Enter the quantity: "))
+                self.t = self.t + 3 * f
+            elif (e == 2):
+                f = int(input("Enter the quantity: "))
+                self.t = self.t + 7 * f
+            elif (e == 3):
+                f = int(input("Enter the quantity: "))
+                self.t = self.t + 6 * f
+            elif (e == 4):
+                f = int(input("Enter the quantity: "))
+                self.t = self.t + 8 * f
+            elif (e == 5):
+                f = int(input("Enter the quantity: "))
+                self.t = self.t + 25 * f
+            elif (e == 6):
+                break
+            else:
+                print("Enter a Valid Option")
+            print("Total Laundry Cost = $",self.t," ")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -103,15 +150,16 @@ class hotelfarecal:
     def display(self):
         print("*****HOTEL BILL******")
         print("Customer Detail: ")
-        print("Customer Name:",self.name)
-        print("Customer Address:",self.address)
-        print("Check In Date",self.cindate)
-        print("Check Out Date",self.cindate)
-        print("Room no.:",self.rno)
-        print("Your Room Rate is:",self.s)
-        print("Your Food Bill is:",self.r)
+        print("Customer Name: ",self.name)
+        print("Customer Address: ",self.address)
+        print("Check In Date: ",self.cindate)
+        print("Check Out Date: ",self.cindate)
+        print("Room no.: ",self.rno)
+        print("Your Room Rate is: ",self.s)
+        print("Your Food Bill is: ",self.r)
+        print("Your Laundry Bill is: ",self.t)
 
-        self.rt = self.s + self.r
+        self.rt = self.s + self.r + self.t
 
         print("Your Subtotal Bill is: ",self.rt)
 
@@ -129,8 +177,9 @@ def main():
         print("1. Enter Customer Data")
         print("2. Calculate Room Rate")
         print("3. Calculate Restaurant Bill")
-        print("4. Show Total Bill")
-        print("5. EXIT")
+        print("4. Calculate Laundry Bill")
+        print("5. Show Total Bill")
+        print("6. EXIT")
 
         b = int(input("Enter Your Choice:"))
         if (b == 1):
@@ -140,8 +189,10 @@ def main():
         if (b == 3):
             a.restBill()
         if (b == 4):
-            a.display()
+            a.laundryBill()
         if (b == 5):
+            a.display()
+        if (b == 6):
             quit()
 main()
 
