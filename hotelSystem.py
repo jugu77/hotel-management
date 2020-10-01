@@ -23,12 +23,12 @@ class hotelfarecal:
 
     ## Creating the different options
     def inputdata(self):
-        self.rno = random.randint(100,3000)
+        # self.rno = random.randint(100,3000)
         self.name=input(" Enter your name:")
         self.address=input(" Enter your address:")
         self.cindate=input(" Enter yout check in date:")
         self.coutdate=input(" Enter your checkout date: ")
-        print("Your room number:",self.rno," ")
+        # print("Your room number:",self.rno," ")
 
     ## Creating the room rate calcualtion
     def roomrate(self):
@@ -43,16 +43,24 @@ class hotelfarecal:
         numberOfNights = int(input("How Many Nights Did You Stay: "))
 
         if(roomChoice == 1):
+            self.rno = random.randint(3000,4000)
             print("Your Room Was a Type A")
+            print("Your Room Number Is: ",self.rno," ")
             self.s = 1300 * numberOfNights
         elif(roomChoice == 2):
+            self.rno = random.randint(2000, 3000)
             print("Your Room Was a Type B")
+            print("Your Room Number Is: ", self.rno, " ")
             self.s = 1000 * numberOfNights
         elif (roomChoice == 3):
+            self.rno = random.randint(1100, 2000)
             print("Your Room Was a Type C")
+            print("Your Room Number Is: ", self.rno, " ")
             self.s = 700 * numberOfNights
         elif (roomChoice == 4):
+            self.rno = random.randint(100, 1100)
             print("Your Room Was a Type D")
+            print("Your Room Number Is: ", self.rno, " ")
             self.s = 400 * numberOfNights
         else:
             print("Please Enter a Room")
@@ -145,12 +153,7 @@ class hotelfarecal:
                 print("Invalid Option")
             print("Total Conference Bill = $",self.p," ")
 
-
-
-
-
-
-
+## PRITNING THE HOTEL BILL ####
     def display(self):
         print("*****HOTEL BILL******")
         print("Customer Detail: ")
