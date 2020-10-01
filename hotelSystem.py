@@ -93,7 +93,7 @@ class hotelfarecal:
 
     # Creating the Laundry Bill
     def laundryBill(self):
-        print("*****Laundry Menu*****")
+        print("*****LAUNDRY SERVICE*****")
         print("1. Shorts--->$5","2. Pants--->$7","3. Shirt--->$6","4. Jeans--->$8","5. Suit--->$25","6. Exit")
 
         while (1):
@@ -119,27 +119,31 @@ class hotelfarecal:
                 print("Enter a Valid Option")
             print("Total Laundry Cost = $",self.t," ")
 
+    # Creating the Confference Room Rental
+    def confRent(self):
+        print("*****CONFERENCE ROOM MENU******")
+        print("1. 10 People--->$40","2. 30 People--->$65","3. 60 People--->$120","4. 100+ People--->$200","5. Exit")
 
+        while (1):
+            g = int(input("Enter Choice: "))
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            if (g == 1):
+                h = int(input("Number of Hours: "))
+                self.p = self.p + 40 * h
+            elif (g == 2):
+                h = int(input("Number of Hours: "))
+                self.p = self.p + 65 * h
+            elif (g == 3):
+                h = int(input("Number of Hours: "))
+                self.p = self.p + 120 * h
+            elif (g == 4):
+                h = int(input("Number of Hours: "))
+                self.p = self.p + 200 * h
+            elif (g == 5):
+                break
+            else:
+                print("Invalid Option")
+            print("Total Conference Bill = $",self.p," ")
 
 
 
@@ -158,17 +162,13 @@ class hotelfarecal:
         print("Your Room Rate is: ",self.s)
         print("Your Food Bill is: ",self.r)
         print("Your Laundry Bill is: ",self.t)
+        print("Your Conference Bill is",self.p)
 
-        self.rt = self.s + self.r + self.t
+        self.rt = self.s + self.r + self.t + self.p
 
         print("Your Subtotal Bill is: ",self.rt)
-
-
-
-
-
-
-
+        print("Additional Services Charges: ",self.a)
+        print("Grand Total is: ",self.rt+self.a," ")
 
 
 def main():
@@ -178,8 +178,9 @@ def main():
         print("2. Calculate Room Rate")
         print("3. Calculate Restaurant Bill")
         print("4. Calculate Laundry Bill")
-        print("5. Show Total Bill")
-        print("6. EXIT")
+        print("5. Show Conference Bill")
+        print("6. Show Total Bill")
+        print("7. EXIT")
 
         b = int(input("Enter Your Choice:"))
         if (b == 1):
@@ -191,8 +192,10 @@ def main():
         if (b == 4):
             a.laundryBill()
         if (b == 5):
-            a.display()
+            a.confRent()
         if (b == 6):
+            a.display()
+        if (b == 7):
             quit()
 main()
 
