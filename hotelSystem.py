@@ -1,8 +1,9 @@
 import random
+from datetime import datetime
 ## CREATING THE main class
 class hotelfarecal:
     def __init__(self,rt='',s=0,p=0,r=0,t=0,a=1800,
-                 name='',address='',cindate='',coutdate='',rno=0):
+                 name='',address='',email='',phone='',rno=0):
         print(" ******** WELCOME TO HOTEL COLORADO ********")
 
         self.rt=rt
@@ -17,17 +18,21 @@ class hotelfarecal:
         self.a=a
         self.name=name
         self.address=address
-        self.cindate=cindate
-        self.coutdate=coutdate
+        self.email=email
+        self.phone=phone
+        #self.cindate=cindate
+        #self.coutdate=coutdate
         self.rno=rno
 
     ## Creating the different options
     def inputdata(self):
         # self.rno = random.randint(100,3000)
-        self.name=input(" Enter your name:")
-        self.address=input(" Enter your address:")
-        self.cindate=input(" Enter yout check in date:")
-        self.coutdate=input(" Enter your checkout date: ")
+        self.name=input("Enter your name: ")
+        self.address=input("Enter your address: ")
+        self.email=input("Enter Email: ")
+        self.phone=input('Enter Phone: ')
+        #self.cindate=input(" Enter yout check in date (M/D/Y): ")
+        #self.coutdate=input(" Enter your checkout date (M/D/Y): ")
         # print("Your room number:",self.rno," ")
 
     ## Creating the room rate calcualtion
@@ -40,7 +45,27 @@ class hotelfarecal:
         print("4. Room Type D ----> $400 Per Night\-")
 
         roomChoice = int(input("Enter the room choice-> "))
-        numberOfNights = int(input("How Many Nights Did You Stay: "))
+        #numberOfNights = int(input("How Many Nights Did You Stay: "))
+
+        ## Creates a varible to take the checkin and checkout dates:
+        checkIn = input("Check-in Date [DD/MM/YY]: ")
+        checkOut = input("Check-out Date [DD/MM/YY]: ")
+        ## Converts variables above to a datetime class to process arithmetic
+        check_In = datetime.strptime(checkIn, '%d/%m/%y')
+        check_Out = datetime.strptime(checkOut, '%d/%m/%y')
+
+        ## If statement to calculate the number of nights/day a guets stayed
+        if (check_In.month == check_Out.month):
+            numberOfNights = check_Out.day - check_In.day
+            #print("Number of Nights: " + str(numberOfNights))
+        elif (check_In.month != check_Out.month):
+            dayin = datetime.date(check_In)
+            dayout = datetime.date(check_Out)
+            numberOfNights = dayout - dayin
+            #print("Number of Nights: " + str(numberOfNights))
+        else:
+            print("Enter a value")
+        print("Number of Nights: " + str(numberOfNights))
 
         if(roomChoice == 1):
             self.rno = random.randint(3000,4000)
@@ -64,7 +89,7 @@ class hotelfarecal:
             self.s = 400 * numberOfNights
         else:
             print("Please Enter a Room")
-        print("Your Room Rate is =",self.s," ")
+        print("Your Room Rate is: $",self.s," ")
 
     ## Creating The Restaurant Bill
     def restBill(self):
@@ -97,7 +122,7 @@ class hotelfarecal:
                 break
             else:
                 print("Invalid Option")
-            print ("Total Food Cost = $",self.r," ")
+            print ("Total Food Cost: $",self.r," ")
 
     # Creating the Laundry Bill
     def laundryBill(self):
@@ -125,7 +150,7 @@ class hotelfarecal:
                 break
             else:
                 print("Enter a Valid Option")
-            print("Total Laundry Cost = $",self.t," ")
+            print("Total Laundry Cost $",self.t," ")
 
     # Creating the Confference Room Rental
     def confRent(self):
@@ -156,36 +181,42 @@ class hotelfarecal:
 ## PRITNING THE HOTEL BILL ####
     def display(self):
         print("*****HOTEL BILL******")
-        print("Customer Detail: ")
         print("Customer Name: ",self.name)
         print("Customer Address: ",self.address)
-        print("Check In Date: ",self.cindate)
-        print("Check Out Date: ",self.cindate)
-        print("Room no.: ",self.rno)
-        print("Your Room Rate is: ",self.s)
-        print("Your Food Bill is: ",self.r)
-        print("Your Laundry Bill is: ",self.t)
-        print("Your Conference Bill is",self.p)
+        print("Email Address: ",self.email)
+        print("Phone Number: ",self.phone)
+        print("Room No: ",self.rno)
+        print('-'*40)
+        print("Your Room Rate: $",self.s)
+        print("Your Food Bill: $",self.r)
+        print("Your Laundry Bill: $",self.t)
+        print("Your Conference Bill: $",self.p)
 
-        self.rt = self.s + self.r + self.t + self.p
-
-        print("Your Subtotal Bill is: ",self.rt)
-        print("Additional Services Charges: ",self.a)
-        print("Grand Total is: ",self.rt+self.a," ")
+        #Calculate Room Rate with tax
+        tax = (.029 * self.s)
+        self.rt = self.s + tax
+        # Calculates additional charges on services
+        self.a = self.r + self.t + self.p
+        print('-'*40)
+        print("Your Subtotal Bill: $",self.rt)
+        print("Additional Services Charges: $",self.a)
+        print('-' * 40)
+        print("Grand Total: $",self.rt+self.a," ")
+        print("<------------------------- END --------------------->")
 
 
 def main():
     a = hotelfarecal()
     while (1):
-        print("1. Enter Customer Data")
-        print("2. Calculate Room Rate")
-        print("3. Calculate Restaurant Bill")
-        print("4. Calculate Laundry Bill")
-        print("5. Show Conference Bill")
+        print("1. Enter Customer Data ")
+        print("2. Calculate Room Rate ")
+        print("3. Calculate Restaurant Bill ")
+        print("4. Calculate Laundry Bill ")
+        print("5. Calculate Conference Bill ")
         print("6. Show Total Bill")
         print("7. EXIT")
 
-        b = int(input("Enter Your Choice:"))
+        b = int(input("Enter Your Choice: "))
         if (b == 1):
             a.inputdata()
         if (b == 2):
