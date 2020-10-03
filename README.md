@@ -15,4 +15,13 @@ classes.
 
 FLOW
 * START
-    - Enter your choice
+    - Enter Guest Data
+    - Calculate and select room rate and number
+    - Calculate Additional Services (If any)
+        * Calculate Laundry Services
+        * Calculate Room Service
+        * Calculate Conference Room Service
+    - Calculate Room rate plus additional tax
+    - Add additional service to the final 
+    - Print Grand Total
+* END
